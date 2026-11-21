@@ -1,0 +1,373 @@
+:root {
+    /* --- Paleta Modo Claro (Grises Fríos + Azul Acero) --- */
+    --bg-color: #f4f6f8;          /* Fondo general gris muy claro */
+    --surface-color: #ffffff;     /* Tarjetas y formularios */
+    --header-bg: #2b333b;         /* Gris pizarra oscuro (seriedad) */
+    --header-text: #e2e8f0;       /* Texto claro sobre cabecera */
+    --text-main: #1e293b;         /* Texto principal casi negro */
+    --text-muted: #64748b;        /* Texto secundario gris */
+    
+    --primary-color: #3b82f6;     /* Azul acero (confianza) */
+    --primary-hover: #2563eb;
+    --border-color: #e2e8f0;
+    --input-bg: #f8fafc;
+    
+    /* Colores de Estado (Desaturados y coherentes) */
+    --badge-solicitada: #64748b;      /* Gris azulado */
+    --badge-diag: #d97706;            /* Ámbar oscuro */
+    --badge-presu: #8b5cf6;           /* Púrpura apagado */
+    --badge-aprob: #059669;           /* Verde esmeralda oscuro */
+    --badge-rech: #dc2626;            /* Rojo ladrillo */
+    --badge-repar: #ea580c;           /* Naranja quemado */
+    --badge-lista: #0d9488;           /* Teal oscuro */
+    --badge-entreg: #475569;          /* Gris pizarra */
+    --badge-cancel: #94a3b8;          /* Gris claro */
+    
+    --error-color: #dc2626;
+    --shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+}
+
+[data-theme="dark"] {
+    /* --- Paleta Modo Oscuro (Inversión de luminancia) --- */
+    --bg-color: #0f172a;          /* Fondo azul noche muy oscuro */
+    --surface-color: #1e293b;     /* Tarjetas gris azulado */
+    --header-bg: #020617;         /* Cabecera casi negra */
+    --header-text: #f1f5f9;
+    --text-main: #f1f5f9;
+    --text-muted: #94a3b8;
+    
+    --primary-color: #60a5fa;     /* Azul claro para contraste */
+    --primary-hover: #3b82f6;
+    --border-color: #334155;
+    --input-bg: #0f172a;
+    
+    /* Estados en modo oscuro (misma lógica, más brillantes) */
+    --badge-solicitada: #94a3b8;
+    --badge-diag: #fbbf24;
+    --badge-presu: #a78bfa;
+    --badge-aprob: #34d399;
+    --badge-rech: #f87171;
+    --badge-repar: #fb923c;
+    --badge-lista: #2dd4bf;
+    --badge-entreg: #cbd5e1;
+    --badge-cancel: #64748b;
+    
+    --error-color: #f87171;
+    --shadow: 0 4px 6px rgba(0,0,0,0.4);
+}
+
+* { box-sizing: border-box; }
+
+body {
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    transition: background-color 0.3s, color 0.3s;
+    line-height: 1.5;
+}
+
+/* --- Layout --- */
+.layout header {
+    background: var(--header-bg);
+    color: var(--header-text);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: var(--shadow);
+}
+
+.layout header h1 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--header-text);
+}
+
+.layout nav {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.layout nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+    padding: 0.25rem 0;
+    border-bottom: 2px solid transparent;
+}
+
+.layout nav a:hover {
+    color: var(--header-text);
+}
+
+.layout nav a.activo {
+    color: var(--header-text);
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.layout main {
+    padding: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* --- Botón Tema --- */
+.btn-tema {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-muted);
+    padding: 0.4rem 0.8rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    font-weight: 500;
+    transition: all 0.2s;
+    margin-left: 1rem;
+}
+.btn-tema:hover {
+    color: var(--header-text);
+    border-color: var(--header-text);
+}
+
+/* --- Títulos --- */
+h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* --- Lista de Órdenes (Diseño limpio, estilo tabla) --- */
+.lista-ordenes {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.orden-item {
+    background: var(--surface-color);
+    padding: 1rem 1.25rem;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    transition: border-color 0.2s;
+}
+
+.orden-item:hover {
+    border-color: var(--primary-color);
+}
+
+.orden-item a {
+    color: var(--text-main);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+}
+.orden-item a:hover {
+    color: var(--primary-color);
+}
+
+/* --- Badges (Etiquetas de estado) --- */
+.badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #fff;
+}
+
+.badge-solicitada { background: var(--badge-solicitada); }
+.badge-en_diagnostico { background: var(--badge-diag); color: #000; }
+.badge-presupuestada { background: var(--badge-presu); }
+.badge-aprobada { background: var(--badge-aprob); }
+.badge-rechazada { background: var(--badge-rech); }
+.badge-en_reparacion { background: var(--badge-repar); }
+.badge-lista { background: var(--badge-lista); }
+.badge-entregada { background: var(--badge-entreg); }
+.badge-cancelada { background: var(--badge-cancel); color: #000; }
+
+/* --- Formularios --- */
+.form-orden, .presupuesto-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background: var(--surface-color);
+    padding: 1.5rem;
+    border-radius: 6px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+}
+
+.form-orden label, .presupuesto-form label {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+input, select, textarea {
+    padding: 0.5rem 0.75rem;
+    margin-top: 0.3rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font: inherit;
+    background: var(--input-bg);
+    color: var(--text-main);
+    font-size: 0.95rem;
+    transition: border-color 0.2s;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 1px var(--primary-color);
+}
+
+/* --- Botones --- */
+button {
+    padding: 0.5rem 1rem;
+    background: var(--primary-color);
+    color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+}
+
+button:hover {
+    background: var(--primary-hover);
+}
+
+button[type="button"] {
+    background: transparent;
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+}
+button[type="button"]:hover {
+    background: var(--border-color);
+}
+
+.pieza-row {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.pieza-row input { flex: 1; min-width: 80px; }
+.pieza-row button { background: var(--error-color); border: none; color: #fff; }
+.pieza-row button:hover { opacity: 0.9; }
+
+.acciones-form {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* --- Detalle Orden --- */
+.detalle-orden {
+    background: var(--surface-color);
+    padding: 2rem;
+    border-radius: 6px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+}
+
+.detalle-orden h2 {
+    margin-top: 0;
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.presupuesto {
+    background: var(--bg-color);
+    padding: 1.25rem;
+    border-radius: 4px;
+    margin: 1.5rem 0;
+    border: 1px solid var(--border-color);
+    border-left: 3px solid var(--primary-color);
+}
+
+.presupuesto h3 { margin-top: 0; font-size: 1rem; color: var(--text-main); }
+
+.acciones {
+    margin: 1.5rem 0;
+    padding: 1.25rem;
+    background: var(--bg-color);
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+}
+
+.acciones h3 { margin-top: 0; font-size: 1rem; color: var(--text-main); }
+
+.acciones button {
+    margin-right: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.historial { margin-top: 2rem; }
+.historial h3 { font-size: 1rem; color: var(--text-main); }
+.historial ul {
+    list-style: none;
+    padding: 0;
+    border-left: 2px solid var(--border-color);
+    margin-left: 0.5rem;
+}
+.historial li {
+    padding: 0.4rem 1rem;
+    margin-bottom: 0.25rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    position: relative;
+}
+.historial li::before {
+    content: '';
+    position: absolute;
+    left: -5px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 8px;
+    background: var(--border-color);
+    border-radius: 50%;
+}
+
+.error {
+    color: var(--error-color);
+    font-weight: 500;
+    background: rgba(220, 38, 38, 0.05);
+    padding: 0.75rem;
+    border-radius: 4px;
+    border: 1px solid var(--error-color);
+    font-size: 0.9rem;
+}
+.cerrada {
+    color: var(--text-muted);
+    font-style: italic;
+    font-size: 0.9rem;
+    padding: 0.5rem 0;
+}
